@@ -1,0 +1,104 @@
+.form{
+    border-radius: 2rem;
+    background: linear-gradient(135deg, #22628F 0%, #154669 53%, #22628F 100%);
+    display: grid;
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: white;
+    margin: auto;
+    width: auto;
+    font-family:'Times New Roman', Times, serif;
+    text-align: center;
+    top: 0;
+    transition: .5s;
+    left: 9%;
+    z-index: 1000;
+}
+
+.form-first {
+    width: 80% !important;
+}
+
+.drawer .MuiDrawer-paper{
+    background: none !important;
+    box-shadow: none !important;
+    padding-top: 1rem;
+}
+
+.dropdown-btn{
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.dd-btn{
+    padding: 0 6vw;
+    border-radius: 1rem;
+    background-color: #22628fa1;
+}
+
+.dropdown-btn svg:hover{
+    transform: rotate(180deg) scale(130%);
+    transition: .5s;
+}
+
+.dropdown-btn svg{
+    font-size: 3rem !important;
+    transition: .5s;
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+
+
+
+.form .footer svg{
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: .5s;
+    font-size: 3rem !important;
+}
+
+.active .footer svg, .dropdown-btn .active svg{
+    transform: rotate(0deg);
+    transition: 1s;
+}
+
+.form h1{
+    color: white;
+    letter-spacing: .1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ffffffa0;
+}
+
+.form .fields{
+    display: grid;
+    gap: .5rem;
+}
+
+.form .earth img{
+    width: 100%;
+    height: 7rem;
+}
+
+.form .earth{
+    float: right;
+}
+
+.form .button button svg{
+    font-size: 5rem !important;
+}
+
+.form .button{
+    display: flex;
+    justify-content: center;
+}
+.fields .MuiOutlinedInput-notchedOutline{
+    border-color: white !important;
+}
+.fields input, label, .MuiInputBase-input, svg{
+    color: white !important;
+}
+.fields p{
+    color: white !important;
+}

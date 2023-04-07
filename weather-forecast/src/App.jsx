@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+
+import WeatherCard from "./WeatherCard/WeatherCard";
+import WeatherForm from "./WeatherForm/WeatherForm"
+
+import WeatherContext from "./Contexts/WeatherContext";
+import LoadingContext from "./Contexts/LoadingContext";
+import CityContext from "./Contexts/CityContext";
+
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 function App() {
+
+  const [weather, setWeather] = useState({});
+  const [loading, setLoad] = useState(false);
+  const [cityName, setCityName] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <WeatherContext.Provider value={{ weather, setWeather }}>
+        <LoadingContext.Provider value={{ loading, setLoad }}>
+          <CityContext.Provider value={{ cityName, setCityName }}>
+            <WeatherForm></WeatherForm>
+            <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={loading}
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
+            {weather.latitude && !loading ? <WeatherCard></WeatherCard> : <></>}
+          </CityContext.Provider>
+        </LoadingContext.Provider>
+      </WeatherContext.Provider>
+
     </div>
   );
 }
