@@ -1,4 +1,4 @@
-# WeaterForecast
+# WeatherForecast
 
 Ez a weboldal arra szolgál, hogy mindenki számára elérhető és naprakész időjárás előrejelzéseket nyújtson, hogy mindig tájékozottak legyenek a közelgő időjárási viszonyokról. Az oldal célja, hogy felhasználóinkat segítse abban, hogy tervezhessék mindennapi tevékenységeiket az időjárásra való tekintettel.
 
