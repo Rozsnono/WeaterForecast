@@ -219,7 +219,8 @@ function WC() {
     const { cityName } = useContext(CityContext);
 
     const [currentDay, setDay] = useState(0);
-    const [times, setTimes] = useState(weather.hourly.time.filter((time) => new Date(time).getHours() === 0)); // eslint-disable-next-line
+    // eslint-disable-next-line
+    const [times, setTimes] = useState(weather.hourly.time.filter((time) => new Date(time).getHours() === 0)); 
 
     function getDatasPerDay(override = null) {
         let tmp = {
