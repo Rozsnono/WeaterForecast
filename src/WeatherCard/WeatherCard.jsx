@@ -219,6 +219,7 @@ function WC() {
     const { cityName } = useContext(CityContext);
 
     const [currentDay, setDay] = useState(0);
+    const [times, setTimes] = useState(weather.hourly.time.filter((time) => new Date(time).getHours() === 0));
 
     function getDatasPerDay(override = null) {
         let tmp = {
@@ -229,10 +230,9 @@ function WC() {
             rain: [],
             weathercode: [],
         }
-
         for (let index = 0; index < weather.hourly.time.length; index++) {
             const element = weather.hourly.time[index];
-            if (new Date(element).getDate() === new Date().getDate() + (override ? override : currentDay)) {
+            if (new Date(element).getDate() === (override == null ? new Date(times[currentDay]).getDate() : new Date(override).getDate())) {
                 tmp.time.push(weather.hourly.time[index])
                 tmp.temp.push(weather.hourly.temperature_2m[index]);
                 tmp.humidity.push(weather.hourly.relativehumidity_2m[index]);
@@ -412,8 +412,8 @@ function WC() {
                 <Grid item xs={12} lg={4} className="grid" order={{ xs: 1, lg: 2 }}>
                     <div className={"card " + (isMobile ? "" : " cb-0")}>
                         {
-                            weather.hourly.time.filter((time) => new Date(time).getHours() === 0).map((data, index) => (
-                                <FutureWeather key={index} index={index} class={currentDay === index ? "disapper" : (index === 0 ? "choosen" : "")} clicked={() => setDay(index)} date={data} data={getDatasPerDay(index)} icon={<GetIcon icon={weatherCodes.filter((w) => w.code === getDatasPerDay(index).weathercode.max)[0].icon} />}></FutureWeather>
+                            times.map((data, index) => (
+                                <FutureWeather key={index} index={index} class={currentDay === index ? "disappear" : (index === 0 ? "choosen" : "")} clicked={() => setDay(index)} date={data} data={getDatasPerDay(data)} icon={<GetIcon icon={weatherCodes.filter((w) => w.code === getDatasPerDay(data).weathercode.max)[0].icon} />}></FutureWeather>
                             ))
                         }
 
