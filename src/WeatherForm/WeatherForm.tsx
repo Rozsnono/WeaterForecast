@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext, useState } from "react";
 import WeatherContext from "../Contexts/WeatherContext";
 import CityContext from "../Contexts/CityContext";
@@ -25,17 +27,17 @@ function WF() {
     const { setLoad } = useContext(LoadingContext);
     const { setCityName } = useContext(CityContext);
 
-    const [lati, setLati] = useState(47.68);
-    const [long, setLong] = useState(17.63);
-    const [type, setType] = useState("c");
-    const [num, setNumber] = useState(3);
-    const [city, setCity] = useState("Győr");
+    const [lati, setLati] = useState<any>(47.68);
+    const [long, setLong] = useState<any>(17.63);
+    const [type, setType] = useState<any>("c");
+    const [num, setNumber] = useState<any>(3);
+    const [city, setCity] = useState<any>("Győr");
 
     const [first, setFirst] = useState(true);
 
     const [isCity, setIsCity] = useState(false);
 
-    function GetWeather(lati, long) {
+    function GetWeather(lati: any, long: any) {
         fetch("https://api.open-meteo.com/v1/forecast?latitude=" + (lati) + "&longitude=" + long + "&hourly=temperature_2m,relativehumidity_2m,rain,weathercode,windspeed_10m&" + (type === "f" ? "temperature_unit=fahrenheit&" : "") + "forecast_days=" + (num + 1))
             .then(response => response.json())
             .then(data => {
@@ -99,15 +101,15 @@ function WF() {
         }
     ];
 
-    function Change(event) {
+    function Change(event: any) {
         setType(event.target.value);
     }
 
-    function ChangeNum(event) {
+    function ChangeNum(event: any) {
         setNumber(event.target.value);
     }
 
-    function DropDown(status) {
+    function DropDown(status: any) {
         setState(status);
         if (state) {
             getCityCoordinates();

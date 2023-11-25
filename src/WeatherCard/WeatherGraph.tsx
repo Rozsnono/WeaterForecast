@@ -1,9 +1,8 @@
+"use client";
 import React from "react";
-import { Line } from "react-chartjs-2";
-// eslint-disable-next-line
-import { Chart as ChartJs } from "chart.js/auto"; 
+import { Chart } from 'primereact/chart';
 
-export default function WG({ data }) {
+export default function WG({ data }: any) {
 
     const option = {
         plugins: {  // 'legend' now within object 'plugins {}'
@@ -39,7 +38,7 @@ export default function WG({ data }) {
 
     return (
         <div className="graph" >
-            <Line data={data} key={data.labels[0]} options={option}></Line>
+            <Chart type="line" data={data} options={option} />
         </div >
     )
 }

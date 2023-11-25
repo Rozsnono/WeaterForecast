@@ -1,25 +1,25 @@
-import './App.css';
+"use client";
+
 import React, { useState } from "react";
 
-import WeatherCard from "./WeatherCard/WeatherCard";
-import WeatherForm from "./WeatherForm/WeatherForm"
+import WeatherCard from "../WeatherCard/WeatherCard";
+import WeatherForm from "../WeatherForm/WeatherForm"
 
-import WeatherContext from "./Contexts/WeatherContext";
-import LoadingContext from "./Contexts/LoadingContext";
-import CityContext from "./Contexts/CityContext";
+import WeatherContext from "../Contexts/WeatherContext";
+import LoadingContext from "../Contexts/LoadingContext";
+import CityContext from "../Contexts/CityContext";
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-
-function App() {
-
-  const [weather, setWeather] = useState({});
-  const [loading, setLoad] = useState(false);
-  const [cityName, setCityName] = useState("");
-
+export default function Home() {
+  
+  const [weather, setWeather] = useState<any>({});
+  const [loading, setLoad] = useState<any>(false);
+  const [cityName, setCityName] = useState<any>("");
+  
   return (
-    <div>
+    <div className="">
       <WeatherContext.Provider value={{ weather, setWeather }}>
         <LoadingContext.Provider value={{ loading, setLoad }}>
           <CityContext.Provider value={{ cityName, setCityName }}>
@@ -34,9 +34,6 @@ function App() {
           </CityContext.Provider>
         </LoadingContext.Provider>
       </WeatherContext.Provider>
-
     </div>
-  );
+  )
 }
-
-export default App;

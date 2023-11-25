@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext, useState } from "react";
 import WeatherContext from "../Contexts/WeatherContext";
 import CityContext from "../Contexts/CityContext";
@@ -167,7 +169,7 @@ const weatherCodes = [
 ]
 
 
-export function GetIcon(props) {
+export function GetIcon(props: any) {
     return (
         <>
             {
@@ -187,7 +189,7 @@ export function GetIcon(props) {
     )
 }
 
-export function AvgCards(props) {
+export function AvgCards(props: any) {
     return (
         <div className="avg-card">
             {props.icon}
@@ -197,7 +199,7 @@ export function AvgCards(props) {
     )
 }
 
-export function HourlyWeatherCode(props) {
+export function HourlyWeatherCode(props: any) {
 
     return (
         <div className="hourly-card c-HWC">
@@ -215,15 +217,15 @@ function WC() {
         isMobile = true;
     }
 
-    const { weather } = useContext(WeatherContext);
-    const { cityName } = useContext(CityContext);
+    const { weather } = useContext<any>(WeatherContext);
+    const { cityName } = useContext<any>(CityContext);
 
     const [currentDay, setDay] = useState(0);
     // eslint-disable-next-line
-    const [times, setTimes] = useState(weather.hourly.time.filter((time) => new Date(time).getHours() === 0)); 
+    const [times, setTimes] = useState(weather.hourly.time.filter((time: any) => new Date(time).getHours() === 0)); 
 
     function getDatasPerDay(override = null) {
-        let tmp = {
+        let tmp: any = {
             time: [],
             temp: [],
             humidity: [],
@@ -249,35 +251,35 @@ function WC() {
                 max: Math.max(...tmp.temp),
                 min: Math.min(...tmp.temp),
                 current: tmp.temp[new Date().getHours()],
-                avg: parseInt(tmp.temp.reduce((a, b) => a + b, 0) / tmp.temp.length),
+                avg: parseInt((tmp.temp.reduce((a: any, b: any) => a + b, 0) / tmp.temp.length).toString()),
                 array: tmp.temp
             },
             humidity: {
                 max: Math.max(...tmp.humidity),
                 min: Math.min(...tmp.humidity),
                 current: tmp.humidity[new Date().getHours()],
-                avg: parseInt(tmp.humidity.reduce((a, b) => a + b, 0) / tmp.humidity.length),
+                avg: parseInt((tmp.humidity.reduce((a: any, b: any) => a + b, 0) / tmp.humidity.length).toString()),
                 array: tmp.humidity
             },
             wind: {
                 max: Math.max(...tmp.wind),
                 min: Math.min(...tmp.wind),
                 current: tmp.wind[new Date().getHours()],
-                avg: parseInt(tmp.wind.reduce((a, b) => a + b, 0) / tmp.wind.length),
+                avg: parseInt((tmp.wind.reduce((a: any, b: any) => a + b, 0) / tmp.wind.length).toString()),
                 array: tmp.wind
             },
             rain: {
                 max: Math.max(...tmp.rain),
                 min: Math.min(...tmp.rain),
                 current: tmp.rain[new Date().getHours()],
-                avg: parseInt(tmp.rain.reduce((a, b) => a + b, 0) / tmp.rain.length),
+                avg: parseInt((tmp.rain.reduce((a: any, b: any) => a + b, 0) / tmp.rain.length).toString()),
                 array: tmp.rain
             },
             weathercode: {
                 max: Math.max(...tmp.weathercode),
                 min: Math.min(...tmp.weathercode),
                 current: tmp.weathercode[new Date().getHours()],
-                avg: parseInt(tmp.weathercode.reduce((a, b) => a + b, 0) / tmp.weathercode.length),
+                avg: parseInt((tmp.weathercode.reduce((a: any, b: any) => a + b, 0) / tmp.weathercode.length).toString()),
                 array: tmp.weathercode
             }
         }
@@ -288,7 +290,7 @@ function WC() {
         const tmp = getDatasPerDay(null);
 
         return {
-            labels: tmp.time.array.map((time) => new Date(time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })),
+            labels: tmp.time.array.map((time: any) => new Date(time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })),
             datasets: [
                 {
                     label: "Hőmérséklet",
@@ -308,7 +310,7 @@ function WC() {
     }
 
     function getDataNext24Hours() {
-        let tmp = {
+        let tmp: any = {
             time: [],
             temp: [],
             weatherCode: [],
@@ -362,7 +364,7 @@ function WC() {
                 <Grid item xs={12} className="grid grid-hourly">
                     <div className={"card c-hourlyWC" + (isMobile ? "" : " cb-0")}>
                         {
-                            getDataNext24Hours().time.map((time, index) => (
+                            getDataNext24Hours().time.map((time: any, index: number) => (
                                 <HourlyWeatherCode key={index} time={time} temp={getDataNext24Hours().temp[index]} icon={weatherCodes.filter((w) => w.code === getDataNext24Hours().weatherCode[index])[0].icon} />
                             ))
                         }
@@ -413,7 +415,7 @@ function WC() {
                 <Grid item xs={12} lg={4} className="grid" order={{ xs: 1, lg: 2 }}>
                     <div className={"card " + (isMobile ? "" : " cb-0")}>
                         {
-                            times.map((data, index) => (
+                            times.map((data: any, index: number) => (
                                 <FutureWeather key={index} index={index} class={currentDay === index ? "disappear" : (index === 0 ? "choosen" : "")} clicked={() => setDay(index)} date={data} data={getDatasPerDay(data)} icon={<GetIcon icon={weatherCodes.filter((w) => w.code === getDatasPerDay(data).weathercode.max)[0].icon} />}></FutureWeather>
                             ))
                         }

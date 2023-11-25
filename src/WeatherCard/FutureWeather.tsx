@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 
-export default function FW(props) {
+export default function FW(props: any) {
 
     return (
         <div className={"future-card " + props.class} onClick={() => props.clicked()}>
