@@ -362,7 +362,7 @@ function WC() {
                 </Grid>
 
                 <Grid item xs={12} className="grid grid-hourly">
-                    <div className={"card c-hourlyWC" + (isMobile ? "" : " cb-0")}>
+                    <div className={"card c-hourlyWC" + (!isMobile ? "" : " cb-0")}>
                         {
                             getDataNext24Hours().time.map((time: any, index: number) => (
                                 <HourlyWeatherCode key={index} time={time} temp={getDataNext24Hours().temp[index]} icon={weatherCodes.filter((w) => w.code === getDataNext24Hours().weatherCode[index])[0].icon} />
